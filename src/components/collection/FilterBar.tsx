@@ -1,7 +1,10 @@
+"use client";
+
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+
 
 interface CategoryData {
     id: number;
