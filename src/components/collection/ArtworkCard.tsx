@@ -3,11 +3,20 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Artwork } from "@prisma/client";
 import { Plus } from "lucide-react";
 
+interface ArtworkData {
+    id: number;
+    title: string;
+    imageUrl: string;
+    style?: string | null;
+    category: {
+        name: string;
+    };
+}
+
 interface ArtworkCardProps {
-    artwork: Artwork & { category: { name: string } };
+    artwork: ArtworkData;
     index?: number;
 }
 

@@ -1,13 +1,15 @@
-"use client";
-
-import { Category } from "@prisma/client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
+interface CategoryData {
+    id: number;
+    name: string;
+}
+
 interface FilterBarProps {
-    categories: Category[];
+    categories: CategoryData[];
 }
 
 export default function FilterBar({ categories }: FilterBarProps) {
