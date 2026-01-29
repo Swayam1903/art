@@ -36,7 +36,7 @@ export default async function AdminArtworksPage() {
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-border">
-                        {artworks.map((art) => (
+                        {artworks.map((art: any) => (
                             <tr key={art.id}>
                                 <td className="px-6 py-4">
                                     <div className="relative w-12 h-12 rounded overflow-hidden">
