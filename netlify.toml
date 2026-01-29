@@ -8,3 +8,7 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[functions]
+  included_files = ["!public/transforms/**", "!public/artworks/**", "!public/trending/**", "!public/images/**", "!public/hero-sequence/**", "!public/about-hero-sequence/**"]
+
