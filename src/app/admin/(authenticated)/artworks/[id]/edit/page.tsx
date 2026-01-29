@@ -98,7 +98,7 @@ export default async function EditArtworkPage({
                             defaultValue={artwork.categoryId}
                             required
                         >
-                            {categories.map(c => (
+                            {categories.map((c: { id: number; name: string }) => (
                                 <option key={c.id} value={c.id}>{c.name}</option>
                             ))}
                         </select>

@@ -43,7 +43,7 @@ export default async function NewArtworkPage() {
                             required
                         >
                             <option value="">Select Category</option>
-                            {categories.map(c => (
+                            {categories.map((c: { id: number; name: string }) => (
                                 <option key={c.id} value={c.id}>{c.name}</option>
                             ))}
                         </select>
