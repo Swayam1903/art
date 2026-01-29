@@ -1,9 +1,9 @@
 [build]
   command = "npm run build"
-  publish = ".next"
 
 [functions]
-  included_files = ["!public/**"]
+  node_bundler = "esbuild"
+  included_files = ["!public/**", "!.next/cache/**", "!.next/static/**", "!node_modules/.cache/**"]
 
 [build.environment]
   NODE_VERSION = "20"
