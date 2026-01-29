@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Artwork {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  imageUrl    String
+  style       String?
+  medium      String?
+  size        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  categoryId  Int
+  category    Category @relation(fields: [categoryId], references: [id])
+  
+  images      ArtworkImage[]
+}
+
+model ArtworkImage {
+  id        Int      @id @default(autoincrement())
+  url       String
+  artworkId Int
+  artwork   Artwork  @relation(fields: [artworkId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  artworks  Artwork[]
+  createdAt DateTime  @default(now())
+}
