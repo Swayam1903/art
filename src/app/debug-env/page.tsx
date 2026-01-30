@@ -11,6 +11,8 @@ export default async function DebugEnvPage() {
             NODE_ENV: process.env.NODE_ENV,
             VERCEL_ENV: process.env.VERCEL_ENV || 'LOCAL',
             VERCEL_REGION: process.env.VERCEL_REGION || 'UNKNOWN',
+            BUILD_TIME: "2026-01-30 14:45", // Manual timestamp to be 100% sure
+            CHECKED_AT: new Date().toISOString(),
         };
     } catch (e: any) {
         envs = { error: e.message };
