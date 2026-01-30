@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight, Globe, Palette, ShieldCheck } from "lucide-react";
+import { Globe, Palette, ShieldCheck } from "lucide-react";
 import AboutScrollSequence from "@/components/about/AboutScrollSequence";
 
 export default function AboutPage() {
@@ -157,7 +157,7 @@ export default function AboutPage() {
                                 </h2>
                                 <div className="space-y-8 text-lg md:text-xl text-muted font-light leading-loose">
                                     <p>
-                                        We don't just sell art; we sell the feeling of a space completed. We collaborate with visionary artists who dare to push boundaries, ensuring that every piece in our gallery is a unique statement of elegance.
+                                        We don&apos;t just sell art; we sell the feeling of a space completed. We collaborate with visionary artists who dare to push boundaries, ensuring that every piece in our gallery is a unique statement of elegance.
                                     </p>
                                 </div>
                             </div>
@@ -171,7 +171,7 @@ export default function AboutPage() {
                         <div className="text-center max-w-3xl mx-auto mb-24">
                             <span className="text-accent uppercase tracking-[0.2em] text-xs font-bold">Our Craft</span>
                             <h2 className="text-4xl md:text-6xl font-serif font-medium mt-6 mb-8 tracking-tight">Excellence in Every Detail</h2>
-                            <p className="text-muted text-lg md:text-xl font-light">We obsess over the details so you don't have to.</p>
+                            <p className="text-muted text-lg md:text-xl font-light">We obsess over the details so you don&apos;t have to.</p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">

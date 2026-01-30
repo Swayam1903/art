@@ -56,7 +56,7 @@ export default function FilterBar({ categories }: FilterBarProps) {
                 >
                     All
                 </Button>
-                {categories.map((cat: any) => (
+                {categories.map((cat) => (
                     // Simple match check
                     <Button
                         key={cat.id}

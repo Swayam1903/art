@@ -64,7 +64,7 @@ export default function FeaturedCategories() {
 
                 {/* Bento Grid Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
-                    {categories.map((cat: any, index: number) => (
+                    {categories.map((cat, index) => (
                         <Link
                             key={cat.id}
                             href={`/collection?category=${cat.slug}`}

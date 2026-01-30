@@ -75,7 +75,7 @@ export default async function CollectionPage({
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-                        {artworks.map((artwork: any, index: number) => (
+                        {artworks.map((artwork, index) => (
                             <ArtworkCard key={artwork.id} artwork={artwork} index={index} />
                         ))}
                     </div>

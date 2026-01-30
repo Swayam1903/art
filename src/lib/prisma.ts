@@ -6,11 +6,11 @@ export const prisma =
     globalForPrisma.prisma ||
     new PrismaClient({
         log: ["query", "error", "warn"],
-        ...(process.env.DATABASE_URL
+        ...(process.env.SUPABASE_DATABASE_URL
             ? {
                 datasources: {
                     db: {
-                        url: process.env.DATABASE_URL,
+                        url: process.env.SUPABASE_DATABASE_URL,
                     },
                 },
             }

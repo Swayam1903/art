@@ -82,7 +82,7 @@ export default function HorizontalScroll() {
                     </div>
 
                     {/* Collection Cards */}
-                    {collections.map((collection: any) => (
+                    {collections.map((collection) => (
                         <Card key={collection.id} collection={collection} />
                     ))}
                 </motion.div>

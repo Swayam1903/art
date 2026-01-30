@@ -26,7 +26,7 @@ export default function WhyChoose() {
         <section className="py-24 bg-white">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    {features.map((feature: any, index: number) => (
+                    {features.map((feature, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 20 }}

@@ -94,7 +94,7 @@ export default async function AdminDashboard() {
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-border/50">
-                        {recentArtworks.map((art: any) => (
+                        {recentArtworks.map((art) => (
                             <tr key={art.id} className="hover:bg-zinc-50/50 transition-colors">
                                 <td className="px-8 py-5 font-medium text-foreground text-lg">{art.title}</td>
                                 <td className="px-8 py-5"><span className="px-3 py-1 bg-zinc-100 rounded-full text-xs font-medium tracking-wide text-zinc-600 uppercase border border-zinc-200">{art.category.name}</span></td>

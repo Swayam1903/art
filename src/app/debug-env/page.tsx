@@ -18,8 +18,8 @@ export default async function DebugEnvPage() {
             CHECKED_AT: new Date().toISOString(),
             ALL_KEYS: Object.keys(process.env).filter(k => !k.includes('KEY') && !k.includes('SECRET') && !k.includes('PASSWORD')).sort(),
         };
-    } catch (e: any) {
-        envs = { error: e.message };
+    } catch (e: unknown) {
+        envs = { error: e instanceof Error ? e.message : 'Unknown error' };
     }
 
     return (

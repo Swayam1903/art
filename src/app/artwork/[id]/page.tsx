@@ -144,7 +144,7 @@ export default async function ArtworkPage({
                     <div className="container mx-auto px-6">
                         <h2 className="text-3xl font-serif font-bold mb-12 text-center">You May Also Like</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {relatedArtworks.map((art: any, idx: number) => (
+                            {relatedArtworks.map((art, idx) => (
                                 <ArtworkCard key={art.id} artwork={art} index={idx} />
                             ))}
                         </div>

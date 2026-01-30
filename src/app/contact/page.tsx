@@ -25,7 +25,7 @@ export default function ContactPage() {
                             Get in <span className="text-accent italic">Touch</span>
                         </h1>
                         <p className="text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
-                            Have a question about a collection, interested in a commission, or just want to say hello? We're here to help you find the perfect piece.
+                            Have a question about a collection, interested in a commission, or just want to say hello? We&apos;re here to help you find the perfect piece.
                         </p>
                     </motion.div>
 
