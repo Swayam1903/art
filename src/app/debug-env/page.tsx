@@ -1,10 +1,16 @@
 export default async function DebugEnvPage() {
-    const envs = {
-        DATABASE_URL: process.env.DATABASE_URL ? 'PRESENT (starts with ' + process.env.DATABASE_URL.substring(0, 10) + '...)' : 'MISSING',
-        NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL ? 'PRESENT' : 'MISSING',
-        NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'PRESENT' : 'MISSING',
-        NODE_ENV: process.env.NODE_ENV,
-    };
+    let envs = {};
+
+    try {
+        envs = {
+            DATABASE_URL: process.env.DATABASE_URL ? 'PRESENT (starts with ' + process.env.DATABASE_URL.substring(0, 10) + '...)' : 'MISSING',
+            NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL ? 'PRESENT' : 'MISSING',
+            NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'PRESENT' : 'MISSING',
+            NODE_ENV: process.env.NODE_ENV,
+        };
+    } catch (e: any) {
+        envs = { error: e.message };
+    }
 
     return (
         <div className="p-10 font-mono text-sm bg-black text-white min-h-screen">
