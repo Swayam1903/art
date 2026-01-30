@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 export default async function DebugEnvPage() {
     let envs = {};
 
@@ -7,6 +9,8 @@ export default async function DebugEnvPage() {
             NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL ? 'PRESENT' : 'MISSING',
             NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'PRESENT' : 'MISSING',
             NODE_ENV: process.env.NODE_ENV,
+            VERCEL_ENV: process.env.VERCEL_ENV || 'LOCAL',
+            VERCEL_REGION: process.env.VERCEL_REGION || 'UNKNOWN',
         };
     } catch (e: any) {
         envs = { error: e.message };
