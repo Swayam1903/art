@@ -11,7 +11,9 @@ export default async function DebugEnvPage() {
             NODE_ENV: process.env.NODE_ENV,
             VERCEL_ENV: process.env.VERCEL_ENV || 'LOCAL',
             VERCEL_REGION: process.env.VERCEL_REGION || 'UNKNOWN',
-            BUILD_TIME: "2026-01-30 15:00",
+            BUILD_TIME: "2026-01-30 15:15",
+            VERCEL_PROJECT_NAME: process.env.VERCEL_PROJECT_NAME || 'NOT_FOUND',
+            VERCEL_PROJECT_ID: process.env.VERCEL_PROJECT_ID || 'NOT_FOUND',
             CHECKED_AT: new Date().toISOString(),
             ALL_KEYS: Object.keys(process.env).filter(k => !k.includes('KEY') && !k.includes('SECRET') && !k.includes('PASSWORD')).sort(),
         };
