@@ -1,7 +1,18 @@
+import { supabase } from "@/lib/supabase";
+
 export const dynamic = "force-dynamic";
 
 export default async function DebugEnvPage() {
-    let envs = {};
+    let envs: any = {};
+    let supabaseStatus = "Checking...";
+
+    try {
+        const { data, error } = await supabase.from('Category').select('count', { count: 'exact', head: true });
+        supabaseStatus = error ? `Error: ${error.message}` : `Connected! Count: ${data === null ? 0 : 0}`; // head: true returns null data
+        if (!error) supabaseStatus = "Connected to Supabase successfully!";
+    } catch (e: any) {
+        supabaseStatus = `Exception: ${e.message}`;
+    }
 
     try {
         envs = {
@@ -9,6 +20,7 @@ export default async function DebugEnvPage() {
             SUPABASE_DATABASE_URL: process.env.SUPABASE_DATABASE_URL ? 'PRESENT' : 'MISSING',
             SUPABASE_URL: (process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL) ? 'PRESENT' : 'MISSING',
             NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'PRESENT' : 'MISSING',
+            SUPABASE_CONNECTIVITY: supabaseStatus,
             NODE_ENV: process.env.NODE_ENV,
             VERCEL_ENV: process.env.VERCEL_ENV || 'LOCAL',
             VERCEL_REGION: process.env.VERCEL_REGION || 'UNKNOWN',
