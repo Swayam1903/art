@@ -55,10 +55,10 @@ export default async function AdminLayout({
         <div className="flex min-h-screen bg-[#F0EFEC]">
             {/* Sidebar */}
             <aside className="w-72 bg-[#1C1C1E] text-white hidden md:flex flex-col shadow-xl">
-                <div className="p-8 border-b border-white/10">
+                <Link href="/" className="p-8 border-b border-white/10 hover:bg-white/5 transition-colors block">
                     <h2 className="text-2xl font-serif font-bold tracking-[0.2em] text-accent">POLYARTS</h2>
                     <span className="text-[10px] uppercase text-zinc-400 tracking-[0.3em] mt-2 block">Administration</span>
-                </div>
+                </Link>
 
                 <nav className="flex-1 p-6 space-y-3">
                     <Link href="/admin" className="group flex items-center space-x-4 px-4 py-4 text-sm font-medium rounded-lg text-zinc-400 hover:bg-white/5 hover:text-white transition-all duration-300">
