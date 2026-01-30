@@ -5,8 +5,9 @@ export default async function DebugEnvPage() {
 
     try {
         envs = {
-            DATABASE_URL: process.env.DATABASE_URL ? 'PRESENT (starts with ' + process.env.DATABASE_URL.substring(0, 10) + '...)' : 'MISSING',
-            NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL ? 'PRESENT' : 'MISSING',
+            DATABASE_URL: process.env.DATABASE_URL ? 'PRESENT' : 'MISSING',
+            SUPABASE_DATABASE_URL: process.env.SUPABASE_DATABASE_URL ? 'PRESENT' : 'MISSING',
+            SUPABASE_URL: (process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL) ? 'PRESENT' : 'MISSING',
             NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'PRESENT' : 'MISSING',
             NODE_ENV: process.env.NODE_ENV,
             VERCEL_ENV: process.env.VERCEL_ENV || 'LOCAL',
