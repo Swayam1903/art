@@ -6,9 +6,10 @@ import { redirect } from "next/navigation";
 export async function login(formData: FormData) {
     const password = formData.get("password");
 
-    // Simple hardcoded password for demonstration
-    // In production, use environment variables and proper hashing
-    if (password === "admin123") {
+    // Use environment variable for password
+    const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
+
+    if (password === adminPassword) {
         // Set cookie
         const cookieStore = await cookies();
         cookieStore.set("admin_session", "true", {
