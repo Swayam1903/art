@@ -3,11 +3,11 @@ import { supabase } from "@/lib/supabase";
 export const dynamic = "force-dynamic";
 
 export default async function DebugEnvPage() {
-    let envs: Record<string, any> = {};
+    let envs: Record<string, unknown> = {};
     let supabaseStatus = "Checking...";
 
     try {
-        const { data, error } = await supabase.from('Category').select('count', { count: 'exact', head: true });
+        const { error } = await supabase.from('Category').select('count', { count: 'exact', head: true });
         supabaseStatus = error ? `Error: ${error.message}` : `Connected!`;
         if (!error) supabaseStatus = "Connected to Supabase successfully!";
     } catch (e: unknown) {
