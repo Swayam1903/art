@@ -21,24 +21,20 @@ export default async function CollectionPage({
     const where: any = {};
 
     if (category && category !== "all") {
-        // Basic slug matching: "modern-abstract" -> "Modern Abstract"
-        // Ideally we store slugs in DB, but for now exact match or fuzzy match
-        // Let's assume we pass ID or exact name. For UI niceness, I'll pass slug and try to match name.
-        // Simplifying: searchParams pass category name properly formatted or we use contains.
-
-        // Better approach: Let Prisma filter by category name (contains)
+        // Better approach: Let Prisma filter by category name (contains, insensitive)
         where.category = {
             name: {
                 contains: category.replace(/-/g, ' '), // simple un-slugify
+                mode: 'insensitive',
             }
         };
     }
 
     if (search) {
         where.OR = [
-            { title: { contains: search } },
-            { description: { contains: search } },
-            { style: { contains: search } },
+            { title: { contains: search, mode: 'insensitive' } },
+            { description: { contains: search, mode: 'insensitive' } },
+            { style: { contains: search, mode: 'insensitive' } },
         ];
     }
 

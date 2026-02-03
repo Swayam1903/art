@@ -6,15 +6,6 @@ export const prisma =
     globalForPrisma.prisma ||
     new PrismaClient({
         log: ["query", "error", "warn"],
-        ...(process.env.SUPABASE_DATABASE_URL
-            ? {
-                datasources: {
-                    db: {
-                        url: process.env.SUPABASE_DATABASE_URL,
-                    },
-                },
-            }
-            : {}),
     });
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;

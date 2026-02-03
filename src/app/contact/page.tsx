@@ -8,7 +8,28 @@ import { Textarea } from "@/components/ui/Textarea";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 
+import { submitInquiry } from "@/app/actions/contact";
+import { useState, useTransition } from "react";
+
 export default function ContactPage() {
+    const [isPending, startTransition] = useTransition();
+    const [result, setResult] = useState<{ success?: string; error?: string } | null>(null);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setResult(null);
+
+        const formData = new FormData(e.currentTarget);
+
+        startTransition(async () => {
+            const res = await submitInquiry(formData);
+            setResult(res);
+            if (res.success) {
+                (e.target as HTMLFormElement).reset();
+            }
+        });
+    };
+
     return (
         <div className="min-h-screen bg-background text-foreground selection:bg-accent selection:text-white">
             <Navbar />
@@ -84,12 +105,14 @@ export default function ContactPage() {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             className="lg:col-span-7 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-border/50"
                         >
-                            <form className="space-y-8">
+                            <form onSubmit={handleSubmit} className="space-y-8">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div className="space-y-2">
                                         <label htmlFor="name" className="text-sm uppercase tracking-wider font-bold text-muted-foreground/80">Name</label>
                                         <Input
                                             id="name"
+                                            name="name"
+                                            required
                                             placeholder="Your name"
                                             className="bg-transparent border-t-0 border-x-0 border-b border-border rounded-none px-0 focus-visible:ring-0 focus-visible:border-accent transition-colors placeholder:text-muted/30"
                                         />
@@ -98,7 +121,9 @@ export default function ContactPage() {
                                         <label htmlFor="email" className="text-sm uppercase tracking-wider font-bold text-muted-foreground/80">Email</label>
                                         <Input
                                             id="email"
+                                            name="email"
                                             type="email"
+                                            required
                                             placeholder="your@email.com"
                                             className="bg-transparent border-t-0 border-x-0 border-b border-border rounded-none px-0 focus-visible:ring-0 focus-visible:border-accent transition-colors placeholder:text-muted/30"
                                         />
@@ -109,6 +134,7 @@ export default function ContactPage() {
                                     <label htmlFor="subject" className="text-sm uppercase tracking-wider font-bold text-muted-foreground/80">Subject</label>
                                     <Input
                                         id="subject"
+                                        name="subject"
                                         type="text"
                                         placeholder="Commission Inquiry"
                                         className="bg-transparent border-t-0 border-x-0 border-b border-border rounded-none px-0 focus-visible:ring-0 focus-visible:border-accent transition-colors placeholder:text-muted/30"
@@ -119,15 +145,34 @@ export default function ContactPage() {
                                     <label htmlFor="message" className="text-sm uppercase tracking-wider font-bold text-muted-foreground/80">Message</label>
                                     <Textarea
                                         id="message"
+                                        name="message"
+                                        required
                                         placeholder="Tell us about your project..."
                                         className="min-h-[150px] bg-zinc-50/50 border-border focus-visible:ring-1 focus-visible:ring-accent/50 resize-none p-4 rounded-xl"
                                     />
                                 </div>
 
+                                {result?.error && (
+                                    <div className="p-4 bg-red-50 text-red-600 rounded-xl text-sm">
+                                        {result.error}
+                                    </div>
+                                )}
+
+                                {result?.success && (
+                                    <div className="p-4 bg-green-50 text-green-600 rounded-xl text-sm">
+                                        {result.success}
+                                    </div>
+                                )}
+
                                 <div className="pt-4">
-                                    <Button size="lg" className="w-full md:w-auto rounded-full px-12 py-6 text-lg group bg-foreground text-background hover:bg-accent hover:text-white transition-all duration-300">
-                                        Send Message
-                                        <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
+                                    <Button
+                                        type="submit"
+                                        disabled={isPending}
+                                        size="lg"
+                                        className="w-full md:w-auto rounded-full px-12 py-6 text-lg group bg-foreground text-background hover:bg-accent hover:text-white transition-all duration-300 disabled:opacity-50"
+                                    >
+                                        {isPending ? "Sending..." : "Send Message"}
+                                        {!isPending && <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>}
                                     </Button>
                                 </div>
                             </form>
@@ -140,6 +185,7 @@ export default function ContactPage() {
         </div>
     );
 }
+
 
 function ContactItem({
     icon,
